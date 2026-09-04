@@ -1,0 +1,62 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environment variables, credentials, and secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Operating System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python packaging & distribution
+build/
+dist/
+*.egg-info/
+eggs/
+.eggs/
+
+# Testing and linters
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Logs & temporary files
+*.log
+*.tmp
+
+# Generated experiment outputs & visualizations
+experiments/results/*
+!experiments/results/.gitkeep
+
+# Large model weights and checkpoints (if downloaded locally)
+*.onnx
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.weights
