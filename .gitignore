@@ -71,11 +71,15 @@ error.log
 *.db-shm
 
 # File uploads, temporary media & storage
-uploads/
+uploads/*
+!uploads/.gitkeep
+results/*
+!results/.gitkeep
 temp_uploads/
 tmp/
 temp/
 static/uploads/
+downloaded_candidate.jpg
 
 # Generated experiment outputs & visualizations
 experiments/results/*

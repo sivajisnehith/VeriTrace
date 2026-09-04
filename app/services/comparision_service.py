@@ -4,9 +4,6 @@ import numpy as np
 class ComparisonService:
 
     def normalize_embedding(self, embedding):
-        """
-        Normalize a face embedding.
-        """
         norm = np.linalg.norm(embedding)
 
         if norm == 0:
@@ -14,12 +11,7 @@ class ComparisonService:
 
         return embedding / norm
 
-
     def cosine_similarity(self, embedding_1, embedding_2):
-        """
-        Calculate cosine similarity between two embeddings.
-        """
-
         embedding_1 = self.normalize_embedding(embedding_1)
         embedding_2 = self.normalize_embedding(embedding_2)
 
@@ -30,16 +22,11 @@ class ComparisonService:
             )
         )
 
-
     def compare_reference_to_candidates(
         self,
         reference_embedding,
         candidate_faces
     ):
-        """
-        Compare one reference face against all candidate faces.
-        """
-
         comparison_results = []
 
         for i, candidate_face in enumerate(

@@ -21,7 +21,6 @@ def get_face_embedding(app, image_path):
         print(f"ERROR: No face detected in {image_path}")
         return None
 
-    # For now, use the face with the highest detection confidence
     best_face = max(faces, key=lambda face: face.det_score)
 
     print(f"Face detected in: {image_path}")
@@ -54,11 +53,9 @@ embedding_2 = get_face_embedding(app, IMAGE_2)
 
 if embedding_1 is not None and embedding_2 is not None:
 
-    # Normalize embeddings
     embedding_1 = embedding_1 / np.linalg.norm(embedding_1)
     embedding_2 = embedding_2 / np.linalg.norm(embedding_2)
 
-    # Cosine similarity
     similarity = np.dot(embedding_1, embedding_2)
 
     print("\n==============================")

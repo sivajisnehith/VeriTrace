@@ -11,26 +11,12 @@ CANDIDATE_IMAGE = "experiments/samples/sulli.jpg"
 print("Starting VeriTrace search...\n")
 
 
-# =====================================
-# INITIALIZE SEARCH SERVICE
-# =====================================
-
 search_service = SearchService()
-
-
-# =====================================
-# PERFORM SEARCH
-# =====================================
 
 result = search_service.search(
     REFERENCE_IMAGE,
     CANDIDATE_IMAGE
 )
-
-
-# =====================================
-# DISPLAY RESULTS
-# =====================================
 
 print("\n========== SEARCH RESULTS ==========")
 
@@ -44,20 +30,17 @@ print(
     f"{result['candidate_faces_detected']}"
 )
 
-
 print("\n========== RANKED CANDIDATES ==========")
 
 for rank, candidate in enumerate(
     result["all_candidates"],
     start=1
 ):
-
     print(
         f"Rank {rank} | "
         f"Face {candidate['face_number']} | "
         f"Similarity: {candidate['similarity']:.4f}"
     )
-
 
 print("\n========== TOP CANDIDATE ==========")
 
@@ -77,11 +60,6 @@ print(
     f"Bounding box: "
     f"{top_candidate['bbox']}"
 )
-
-
-# =====================================
-# SAVE ANNOTATED RESULT
-# =====================================
 
 os.makedirs(
     "results",
