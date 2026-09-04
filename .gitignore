@@ -3,13 +3,19 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environments
+# Virtual environments & installed packages
 .venv/
 venv/
 ENV/
 env/
 env.bak/
 venv.bak/
+site-packages/
+lib/
+lib64/
+include/
+bin/
+share/
 
 # Environment variables, credentials, and secrets
 .env
@@ -37,17 +43,39 @@ dist/
 *.egg-info/
 eggs/
 .eggs/
+pip-wheel-metadata/
 
-# Testing and linters
+# Testing, linters, and caches
+.cache/
+*.cache
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .coverage
 htmlcov/
 
-# Logs & temporary files
+# Logs, PIDs, & server files
 *.log
 *.tmp
+*.pid
+server.log
+access.log
+error.log
+
+# Databases & local stores (SQLite, etc.)
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# File uploads, temporary media & storage
+uploads/
+temp_uploads/
+tmp/
+temp/
+static/uploads/
 
 # Generated experiment outputs & visualizations
 experiments/results/*
