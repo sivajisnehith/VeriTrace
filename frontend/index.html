@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VeriTrace — Forensic Evidence Integrity Platform</title>
+<meta name="description" content="VeriTrace discovers matching digital evidence, fingerprints it cryptographically, and anchors its integrity on the Ethereum blockchain." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="VeriTrace home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 11 V4 H11" stroke="var(--text-dim)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M28 21 V28 H21" stroke="var(--text-dim)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M12.5 13 L21 11.5 M21 11.5 L16.5 20.5 M16.5 20.5 L12.5 13" stroke="var(--accent-2)" stroke-width="1.1" fill="none" opacity="0.8"/>
+        <circle cx="12.5" cy="13" r="1.6" fill="none" stroke="var(--text)" stroke-width="1.2"/>
+        <circle cx="16.5" cy="20.5" r="1.6" fill="none" stroke="var(--text)" stroke-width="1.2"/>
+        <circle cx="21" cy="11.5" r="2.1" fill="var(--accent)"/>
+      </svg>
+      <span class="brand-word">VeriTrace</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#technology">Technology</a>
+      <a href="#verification">Verification</a>
+    </nav>
+    <a href="#" class="btn btn-primary btn-small" data-cta="start">Start Investigation</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-kicker">Forensic evidence intelligence</p>
+        <h1 class="hero-title">
+          Verify what you see.<br/>
+          Prove what you found.
+        </h1>
+        <p class="hero-sub">
+          VeriTrace discovers matching digital evidence, fingerprints it
+          cryptographically, and anchors its integrity on the Ethereum
+          blockchain.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary" data-cta="start">Start Investigation</a>
+          <a href="#how-it-works" class="btn btn-ghost">Explore How It Works</a>
+        </div>
+        <div class="hero-trustline">
+          <span>Face identification</span>
+          <span class="dot-sep"></span>
+          <span>Web evidence discovery</span>
+          <span class="dot-sep"></span>
+          <span>SHA-256 fingerprinting</span>
+          <span class="dot-sep"></span>
+          <span>Ethereum anchoring</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" id="hero-visual">
+        <canvas id="scene-canvas" aria-hidden="true"></canvas>
+
+        <!-- static fallback for no-WebGL / reduced motion -->
+        <div class="visual-fallback" id="visual-fallback" aria-hidden="true">
+          <svg viewBox="0 0 520 560" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="fbGlow" cx="50%" cy="45%" r="60%">
+                <stop offset="0%" stop-color="#1a2a30"/>
+                <stop offset="100%" stop-color="#0a0b0d" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="260" cy="270" r="220" fill="url(#fbGlow)"/>
+            <g stroke="var(--accent)" stroke-opacity="0.35" fill="none" stroke-width="1">
+              <circle cx="260" cy="270" r="150"/>
+              <circle cx="260" cy="270" r="110" stroke-dasharray="2 6"/>
+            </g>
+            <rect x="196" y="180" width="128" height="176" rx="6" fill="#12161a" stroke="var(--accent)" stroke-opacity="0.6"/>
+            <line x1="196" y1="230" x2="324" y2="230" stroke="var(--accent)" stroke-opacity="0.5"/>
+            <line x1="196" y1="280" x2="324" y2="280" stroke="var(--accent)" stroke-opacity="0.3"/>
+            <g fill="var(--accent-2)">
+              <circle cx="150" cy="150" r="4"/>
+              <circle cx="380" cy="170" r="4"/>
+              <circle cx="120" cy="360" r="4"/>
+              <circle cx="400" cy="380" r="4"/>
+            </g>
+            <g stroke="var(--accent-2)" stroke-opacity="0.4">
+              <line x1="150" y1="150" x2="196" y2="200"/>
+              <line x1="380" y1="170" x2="324" y2="200"/>
+              <line x1="120" y1="360" x2="196" y2="330"/>
+              <line x1="400" y1="380" x2="324" y2="330"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="section problem">
+    <div class="section-inner problem-grid">
+      <h2 class="section-title">
+        Digital evidence is easy to copy.<br/>Harder to prove.
+      </h2>
+      <div class="problem-copy">
+        <p>
+          Images and content spread across the web get reposted, cropped,
+          re-encoded, and stripped of context. By the time evidence matters,
+          it's rarely clear what was actually there, or when.
+        </p>
+        <p>
+          VeriTrace helps investigators discover matching evidence across the
+          web and create a cryptographically verifiable record of exactly
+          what was observed, and at what moment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <h2 class="section-title">How VeriTrace works</h2>
+      <p class="section-lede">Six stages carry a reference image from first identification to a verifiable, tamper-evident record.</p>
+
+      <ol class="pipeline">
+        <li class="pipeline-step">
+          <span class="step-index">01</span>
+          <h3>Identify</h3>
+          <p>Detect and analyze faces within a reference image.</p>
+        </li>
+        <li class="pipeline-step">
+          <span class="step-index">02</span>
+          <h3>Discover</h3>
+          <p>Search the web for potentially matching evidence.</p>
+        </li>
+        <li class="pipeline-step">
+          <span class="step-index">03</span>
+          <h3>Compare</h3>
+          <p>Rank candidate evidence by face similarity.</p>
+        </li>
+        <li class="pipeline-step">
+          <span class="step-index">04</span>
+          <h3>Fingerprint</h3>
+          <p>Generate a deterministic SHA-256 fingerprint of the selected evidence.</p>
+        </li>
+        <li class="pipeline-step">
+          <span class="step-index">05</span>
+          <h3>Anchor</h3>
+          <p>Register the fingerprint on the Ethereum blockchain.</p>
+        </li>
+        <li class="pipeline-step">
+          <span class="step-index">06</span>
+          <h3>Verify</h3>
+          <p>Detect whether the registered evidence has since changed.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGY / BLOCKCHAIN ============ -->
+  <section class="section blockchain" id="technology">
+    <div class="section-inner">
+      <div class="blockchain-grid">
+        <div class="blockchain-copy">
+          <h2 class="section-title">A fingerprint, not a currency</h2>
+          <p>
+            VeriTrace uses Ethereum for one purpose: giving a piece of
+            evidence a permanent, tamper-evident identity. The fingerprint
+            itself carries no value and represents nothing financial. It is
+            simply a record that this exact evidence existed at this exact
+            time.
+          </p>
+          <p class="network-note">Currently deployed on <span class="hud-mono">Ethereum Sepolia</span>, a public test network.</p>
+        </div>
+        <div class="blockchain-flow" role="img" aria-label="Evidence flows to a SHA-256 fingerprint, which is registered on Ethereum Sepolia as an immutable record.">
+          <div class="flow-node">
+            <span class="flow-icon flow-icon--evidence"></span>
+            <span>Evidence</span>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-node">
+            <span class="flow-icon flow-icon--hash"></span>
+            <span>SHA-256 fingerprint</span>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-node">
+            <span class="flow-icon flow-icon--chain"></span>
+            <span>Ethereum Sepolia</span>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-node flow-node--final">
+            <span class="flow-icon flow-icon--lock"></span>
+            <span>Immutable registration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VERIFICATION / TRUST ============ -->
+  <section class="section trust" id="verification">
+    <div class="section-inner">
+      <h2 class="section-title trust-title">If the evidence changes,<br/>the fingerprint changes.</h2>
+
+      <div class="trust-compare">
+        <div class="trust-card trust-card--original">
+          <span class="trust-tag">Original evidence</span>
+          <div class="trust-hash">
+            <span class="hud-mono">7f3a9c1d…e91c2b4a</span>
+          </div>
+          <span class="trust-status trust-status--verified">Matches registered fingerprint</span>
+        </div>
+
+        <div class="trust-neq" aria-hidden="true">≠</div>
+
+        <div class="trust-card trust-card--altered">
+          <span class="trust-tag">Altered evidence</span>
+          <div class="trust-hash">
+            <span class="hud-mono">2b6e04f8…a137d9c0</span>
+          </div>
+          <span class="trust-status trust-status--tampered">Does not match. Fingerprint differs.</span>
+        </div>
+      </div>
+
+      <p class="trust-footnote">
+        VeriTrace verifies the integrity of the registered evidence
+        representation — not the absolute truth of the original source it
+        came from.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section cta">
+    <div class="section-inner cta-inner">
+      <h2 class="cta-title">Start tracing the evidence.</h2>
+      <p class="cta-sub">Discover. Fingerprint. Verify.</p>
+      <a href="#" class="btn btn-primary btn-large" data-cta="start">Start Investigation</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 11 V4 H11" stroke="var(--text-dim)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M28 21 V28 H21" stroke="var(--text-dim)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M12.5 13 L21 11.5 M21 11.5 L16.5 20.5 M16.5 20.5 L12.5 13" stroke="var(--accent-2)" stroke-width="1.1" fill="none" opacity="0.8"/>
+        <circle cx="12.5" cy="13" r="1.6" fill="none" stroke="var(--text)" stroke-width="1.2"/>
+        <circle cx="16.5" cy="20.5" r="1.6" fill="none" stroke="var(--text)" stroke-width="1.2"/>
+        <circle cx="21" cy="11.5" r="2.1" fill="var(--accent)"/>
+      </svg>
+      <span class="brand-word">VeriTrace</span>
+    </div>
+    <ul class="footer-list">
+      <li>Face Identification</li>
+      <li>Digital Evidence Discovery</li>
+      <li>Cryptographic Integrity</li>
+      <li>Blockchain Verification</li>
+    </ul>
+    <div class="footer-network hud-mono">Ethereum Sepolia</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="scene.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
+

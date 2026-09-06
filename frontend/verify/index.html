@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VeriTrace — Verification Workspace</title>
+<meta name="description" content="Reconstruct and verify digital evidence integrity against Ethereum Sepolia blockchain records." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="../app/app.css" />
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="app-header">
+  <div class="app-header-inner">
+    <div class="app-brand-group">
+      <a href="../index.html" class="app-brand-link" aria-label="VeriTrace Home">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 11 V4 H11" stroke="var(--text-dim)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <path d="M28 21 V28 H21" stroke="var(--text-dim)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <path d="M12.5 13 L21 11.5 M21 11.5 L16.5 20.5 M16.5 20.5 L12.5 13" stroke="var(--accent-2)" stroke-width="1.1" fill="none" opacity="0.8"/>
+          <circle cx="12.5" cy="13" r="1.6" fill="none" stroke="var(--text)" stroke-width="1.2"/>
+          <circle cx="16.5" cy="20.5" r="1.6" fill="none" stroke="var(--text)" stroke-width="1.2"/>
+          <circle cx="21" cy="11.5" r="2.1" fill="var(--accent)"/>
+        </svg>
+        <span class="brand-word">VeriTrace</span>
+      </a>
+      <span class="app-badge-route">Verification</span>
+    </div>
+
+    <nav class="app-nav" aria-label="Application navigation">
+      <a href="../investigate/index.html" class="app-nav-link">Investigation</a>
+      <a href="./index.html" class="app-nav-link is-active">Verify Evidence</a>
+      <a href="../index.html" class="app-nav-link">Home</a>
+    </nav>
+
+    <div class="app-network-status" title="Anchor Network">
+      <span class="net-dot" aria-hidden="true"></span>
+      <span class="hud-mono">Ethereum Sepolia</span>
+      <span class="pill-divider" aria-hidden="true">|</span>
+      <span style="color: var(--text-faint);">Connected</span>
+    </div>
+  </div>
+</header>
+
+<main class="app-main">
+  <!-- Workspace Header -->
+  <div class="workspace-intro">
+    <h1 class="workspace-title">Verify Evidence</h1>
+    <p class="workspace-subtitle">
+      Reconstruct the evidence representation and compare its fingerprint with the blockchain record.
+      Verify either via direct cryptographic fingerprint or by entering raw evidence parameters.
+    </p>
+  </div>
+
+  <!-- Mode Selector Tabs -->
+  <div class="mode-tabs" role="tablist" aria-label="Verification Mode">
+    <button type="button" class="mode-tab is-active" id="tab-fingerprint" role="tab" aria-selected="true" aria-controls="form-mode-a">
+      Mode A — Fingerprint Lookup
+    </button>
+    <button type="button" class="mode-tab" id="tab-fields" role="tab" aria-selected="false" aria-controls="form-mode-b">
+      Mode B — Multi-Field Reconstruction
+    </button>
+  </div>
+
+  <!-- Mode A Form: Direct Fingerprint -->
+  <section class="verify-form" id="form-mode-a" role="tabpanel" aria-labelledby="tab-fingerprint">
+    <div class="form-group">
+      <label for="input-fingerprint" class="form-label">Evidence Fingerprint (SHA-256)</label>
+      <input
+        type="text"
+        id="input-fingerprint"
+        class="form-input hud-mono"
+        placeholder="e.g. d9d1aa1b924a707ceaf0f216b38b962430ad02b784bd029daa8cc1c8809c21b8"
+        maxlength="64"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <span class="form-help">Enter the 64-character hexadecimal SHA-256 fingerprint generated during evidence discovery.</span>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="btn-verify-fingerprint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span>Verify Fingerprint</span>
+    </button>
+  </section>
+
+  <!-- Mode B Form: Evidence Fields Reconstruction (Hidden initially) -->
+  <section class="verify-form" id="form-mode-b" role="tabpanel" aria-labelledby="tab-fields" style="display: none;">
+    <div class="form-group">
+      <label for="field-page-url" class="form-label">Discovered Page URL *</label>
+      <input type="url" id="field-page-url" class="form-input" placeholder="https://example.com/article" required />
+      <span class="form-help">The exact URL where the evidence was discovered (must start with http:// or https://).</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="form-group">
+        <label for="field-title" class="form-label">Page / Post Title</label>
+        <input type="text" id="field-title" class="form-input" placeholder="e.g. Article or page headline" />
+      </div>
+      <div class="form-group">
+        <label for="field-source" class="form-label">Source Domain</label>
+        <input type="text" id="field-source" class="form-input" placeholder="e.g. example.com" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="field-image-sha256" class="form-label">Image SHA-256 Checksum *</label>
+      <input
+        type="text"
+        id="field-image-sha256"
+        class="form-input hud-mono"
+        placeholder="64-character hex image hash"
+        maxlength="64"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="field-observed-at" class="form-label">Observed At (UTC ISO-8601) *</label>
+      <input
+        type="text"
+        id="field-observed-at"
+        class="form-input hud-mono"
+        placeholder="2026-09-05T15:47:13.464606+00:00"
+        required
+      />
+      <span class="form-help">The exact UTC timestamp generated when the evidence was indexed.</span>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="btn-verify-fields">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span>Reconstruct & Verify On-Chain</span>
+    </button>
+  </section>
+
+  <!-- Querying State -->
+  <div id="verify-loading" style="display: none; text-align: center; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 24px;">
+    <div class="radar-spinner" aria-hidden="true"></div>
+    <div class="hud-mono" style="color: var(--accent); font-size: 0.95rem; font-weight: 600;">QUERYING ETHEREUM SEPOLIA</div>
+    <div style="font-size: 0.84rem; color: var(--text-faint); margin-top: 6px;">Calling VeriTraceRegistry contract to evaluate cryptographic state...</div>
+  </div>
+
+  <!-- Verification Result Outcome Container -->
+  <div id="verification-outcome"></div>
+</main>
+
+<script src="../app/verify.js"></script>
+</body>
+</html>
